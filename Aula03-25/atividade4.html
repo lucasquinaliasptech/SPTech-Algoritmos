@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira a quantidade de coca-colas que você já bebeu na vida:</p>
+    <input type="text" id="ipt_cocas">
+    <br>
+    <br>
+    <button onclick="quantidade()">Ver a quantidade</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function quantidade() {
+        let qtd = Number(ipt_cocas.value);
+        div_mensagem.innerHTML = ``;
+        for (let i = 1; i <= qtd; i++) {
+            div_mensagem.innerHTML += `<img src='coca.png' style='width: 200px;'>`;
+        }
+    }
+</script>

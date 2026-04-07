@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira um número:</p>
+    <input type="text" id="ipt_numero">
+    <br>
+    <br>
+    <button onclick="verificar()">Verificar Divisores</button>
+    <p id="p_mensagem"></p>
+</body>
+</html>
+<script>
+    // function verificar () {
+    //     let num = Number(ipt_numero.value);
+    //     let divisores = [];
+        
+    //     for (let i = 0; i <= num; i++) {
+            
+    //         if ((num % i) == 0) {
+    //             divisores.push(i);
+    //         }
+    
+    //         if (divisores.length == 2) {
+    //             p_mensagem.innerHTML = `
+    //                 Divisores do Número ${num}:
+    //                 ${divisores}
+    //                 O número ${num} é um número primo.
+    //             `
+    //         } else {
+    //             p_mensagem.innerHTML = `
+    //                 Divisores do Número ${num}:
+    //                 ${divisores}
+    //             `
+    //         }
+    //     }
+    // }
+
+    function verificar () {
+        let num = Number(ipt_numero.value);
+        let contador = 0;
+
+        p_mensagem.innerHTML = `Divisores do Número ${num}:`
+
+        for (let i = 0; i <= num; i++) {
+            
+            if ((num % i) == 0) {
+                p_mensagem.innerHTML += `<br>${i}`
+                contador++;
+            }
+    
+            if (i == num && contador == 2) {
+                p_mensagem.innerHTML += `<br>O número ${num} é um número primo.`
+            }
+        }
+    }
+</script>

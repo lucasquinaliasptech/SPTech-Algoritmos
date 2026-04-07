@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira quantas pessoas irão entrar no carro:</p>
+    <input type="text" id="ipt_pessoas">
+    <br>
+    <br>
+    <button onclick="partiu()">#Partiu Carona</button>
+    <p id="p_mensagem"></p>
+</body>
+</html>
+<script>
+    function partiu () {
+        let p = Number(ipt_pessoas.value);
+
+        for (let i = 1; i <= p; i++) {
+
+            if (i == 1) {
+                p_mensagem.innerHTML += `<br>Entrou o ${i}º passageiro (que é o(a) motorista)`;
+            } else if (i > 5) {
+                p_mensagem.innerHTML += `<br>O ${i}º passageiro terá que esperar!`;
+            } else {
+                p_mensagem.innerHTML += `<br>Entrou o ${i} passageiro`;
+            }
+        }
+    }
+</script>

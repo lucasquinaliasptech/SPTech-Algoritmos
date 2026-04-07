@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira o sabor da pizza:</p>
+    <input type="text" id="ipt_sabor_pizza">
+    <p>Insira o valor da pizza:</p>
+    <input type="text" id="ipt_valor_pizza">
+    <p>Insira a quantidade de amigos:</p>
+    <input type="text" id="ipt_quantidade_amigos">
+    <br>
+    <button onclick="lovePizza()">Ver valor por amigo</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    function lovePizza() {
+        let valor = Number(ipt_valor_pizza.value);
+        let qtd = Number(ipt_quantidade_amigos.value);
+
+        let r = (valor * 1.1) / qtd;
+
+        p_resultado.innerHTML = `Cada amigo vai colaborar com R$${r.toFixed(2)} para a pizza de ${ipt_sabor_pizza.value}`;
+    }
+</script>

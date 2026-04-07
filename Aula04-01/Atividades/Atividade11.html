@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira o elemento que deseja adicionar:</p>
+    <input type="text" id="ipt_elemento">
+    <br>
+    <br>
+    <button onclick="adicionar()">Adicionar</button>
+    <button onclick="exibirDuplicados()">Exibir Duplicados</button>
+    <button onclick="removerDuplicatas()">Remover Duplicatas</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    let v = [];
+
+    function adicionar () {
+        p_resultado.innerHTML = ``;
+        let novo = ipt_elemento.value;
+
+        v.push(novo);
+        
+        for (let i = 0; i < v.length; i++) {
+            p_resultado.innerHTML += `${v[i]}<br>`;
+        }
+    }
+
+    // function exibirDuplicados () {
+    //     p_resultado.innerHTML = ``;
+    //     for (let i = 0; i < v.length; i++) {
+    //         for (let j = 0; j < v.length; j++) {
+    //             v[i] == v[j + i + 1] ? p_resultado.innerHTML += `${v[i]}<br>` : ``;
+    //         }
+    //     }
+    // }
+
+    function exibirDuplicados () {
+        p_resultado.innerHTML = ``;
+
+        for (let i = 0; i < v.length; i++) {
+            let encontradoAntes = false;
+
+            for (let j = 0; j < i; j++) {
+                if (v[i] == v[j]) {
+                    encontradoAntes = true;
+                    break;
+                }
+            }
+
+            if (!encontradoAntes) {
+                let temDuplicata = false;
+                for (let k = i + 1; k < v.length; k++) {
+                    if (v[i] == v[k]) {
+                        temDuplicata = true;
+                        break;
+                    }
+                }
+                temDuplicata ? p_resultado.innerHTML += `${v[i]}<br>` : ``;
+            }
+
+        }
+    }
+
+    function removerDuplicatas () {
+        p_resultado.innerHTML = ``;
+        for (let i = 0; i < v.length; i++) {
+            for (let j = 0; j < v.length; j++) {
+                v[i] == v[j + i + 1] ? (v.splice((j + i + 1), 1), j--) : ``;
+            }
+            p_resultado.innerHTML = `${v[i]}<br>`;
+        }
+    }
+</script>

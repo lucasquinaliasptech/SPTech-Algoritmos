@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira o tamanho da tela do celular:</p>
+    <input type="text" id="ipt_tamanho">
+    <p>Insira a vor do celular:</p>
+    <input type="text" id="ipt_cor">
+    <br>
+    <button onclick="verificar()">Será que ele gosta?</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function verificar() {
+        let tamanho = Number(ipt_tamanho.value);
+        let cor = ipt_cor.value;
+
+        if (tamanho > 6.5 && (cor == 'Preto' || cor == 'Prata')) {
+            div_mensagem.innerHTML = `<img src='laugh.jpg' width='400px'>`;
+        } else {
+            div_mensagem.innerHTML = `<img src='sad.png' width='400px'>`;
+        }
+    }
+</script>

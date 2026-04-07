@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Insira a quantidade de batalhas:</p>
+    <input type="text" id="ipt_batalhas">
+    <p>Insira a quantidade de marinheiros em cada batalha:</p>
+    <input type="text" id="ipt_marinheiros">
+    <p>Insira a quantidade de carnes disponíveis:</p>
+    <input type="text" id="ipt_carnes">
+    <br>
+    <br>
+    <button onclick="batalhar()">Batalhar</button>
+    <p id="p_resultado"></p>
+    <div class="a"></div>
+</body>
+
+</html>
+<script>
+    function batalhar() {
+        let batalhas = Number(ipt_batalhas.value);
+        let marinheiros = Number(ipt_marinheiros.value);
+        let marinheirosDerrotados = 0;
+        let carnes = Number(ipt_carnes.value);
+
+        let energia = 100;
+
+        for (let i = 0; i < batalhas; i++) {
+            energia -= 10;
+            
+            for (let j = 0; j < marinheiros; j++) {
+                if (energia >= 5) {
+                    energia -= 5;
+                    marinheirosDerrotados++;
+                } else {
+                    if (carnes > 0) {
+                        carnes--;
+                        energia += 100;
+                        energia -= 5;
+                        marinheirosDerrotados++;
+                    }
+                }
+            }
+        }
+
+        if (marinheirosDerrotados == (marinheiros * batalhas)) {
+            p_resultado.innerHTML = `
+                Resultado: Luffy saiu vitorioso! <br>
+                Quantidade de carnes restantes: ${carnes} <br>
+                Quantidade de marinheiros derrotados: ${marinheirosDerrotados} <br>
+                Energia restante ao final das batalhas: ${energia}
+            `;
+        } else {
+            p_resultado.innerHTML = `
+                Resultado: Luffy saiu derrotado! <br>
+                Quantidade de carnes restantes: ${carnes} <br>
+                Quantidade de marinheiros derrotados: ${marinheirosDerrotados} <br>
+                Energia restante ao final das batalhas: ${energia}
+            `;
+        }
+    }
+</script>

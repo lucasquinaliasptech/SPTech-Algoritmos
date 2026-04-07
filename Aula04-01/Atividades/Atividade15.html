@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira o texto que deseja inverter:</p>
+    <input type="text" id="ipt_texto">
+    <br>
+    <br>
+    <button onclick="inverter()">Inverter</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    function inverter () {
+        let texto = ipt_texto.value;
+        let invertido = '';
+        p_resultado.innerHTML = ``;
+
+        let regex = new RegExp('[A-Za-z]');
+
+        for (let i = 0; i < texto.length; i++) {
+            regex.test(texto[texto.length - i - 1]) ? invertido += texto[texto.length - i - 1] : invertido += texto[i];
+        }
+
+        p_resultado.innerHTML = `${invertido}`;
+    }
+</script>

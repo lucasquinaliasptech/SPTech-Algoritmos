@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Informe a última séria que você assistiu:</p>
+    <input type="text" id="ipt_serie">
+    <p>Informe a quantidade total de episódios que você assistiu dessa série:</p>
+    <input type="text" id="ipt_episodios">
+    <br>
+    <button onclick="calcular()">Verificar nível</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    function calcular() {
+        let serie = ipt_serie.value;
+        let episodios = Number(ipt_episodios.value);
+
+        let calculo = episodios * 22;
+
+        let meta = 30 * 60;
+
+        p_resultado.innerHTML = `Vejo que você gosta da série ${serie}`;
+
+        if (calculo > meta) {
+            p_resultado.innerHTML += "<br>Uau, você realmente gosta dessa série!";
+        }
+    }
+</script>
