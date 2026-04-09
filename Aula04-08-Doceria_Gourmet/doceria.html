@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira a quantidade de macarons vendidos:</p>
+    <input type="text" id="ipt_quantidade_macarons">
+    <p>Insira o preço unitário do macaron:</p>
+    <input type="text" id="ipt_valor_macaron">
+
+    <p>Insira a quantidade de brigadeiros gourmet vendidos:</p>
+    <input type="text" id="ipt_quantidade_brigadeiros">
+    <p>Insira o preço unitário do brigadeiro:</p>
+    <input type="text" id="ipt_valor_brigadeiro">
+
+    <p>Insira a quantidade de cupcakes vendidos:</p>
+    <input type="text" id="ipt_quantidade_cupcakes">
+    <p>Insira o preço unitário do cupcake:</p>
+    <input type="text" id="ipt_valor_cupcake">
+
+    <p>Insira a quantidade de cheesecakes vendidos:</p>
+    <input type="text" id="ipt_quantidade_cheesecakes">
+    <p>Insira o preço unitário do cheesecake:</p>
+    <input type="text" id="ipt_valor_cheesecake">
+
+    <br><br>
+
+    <button onclick="verificar()">Verificar Vendas</button>
+
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    function verificar () {
+        let doces = [Number(ipt_quantidade_macarons.value), Number(ipt_quantidade_brigadeiros.value), Number(ipt_quantidade_cupcakes.value), Number(ipt_quantidade_cheesecakes.value)];
+        let valores = [Number(ipt_valor_macaron.value), Number(ipt_valor_brigadeiro.value), Number(ipt_valor_cupcake.value), Number(ipt_valor_cheesecake.value)];
+
+        let continuar = true;
+
+        doces[0] < 0 || doces[1] < 0 || doces[2] < 0 || doces[3] < 0 ? (p_resultado.innerHTML = `As quantidades não podem ser negativas!`, continuar = false) : ``;
+        valores[0] < 0 || valores[1] < 0 || valores[2] < 0 || valores[3] < 0 ? (p_resultado.innerHTML = `Os valores unitários não podem ser negativos!`, continuar = false) : ``;
+
+        if (continuar) {
+            p_resultado.innerHTML = ``;
+            let contador = 1;
+            let valor = 0;
+            let img = ``;
+
+            for (let i = 0; i < doces.length; i++) {
+                for (let j = 0; j < doces[i]; j++) {
+                    if (doces[i] == 0) {
+                        break;
+                    } else {
+                        i == 0 ? img = `<img src="macaron.png">` : ``;
+                        i == 1 ? img = `<img src="brigadeiro.png">` : ``;
+                        i == 2 ? img = `<img src="cupcake.png">` : ``;
+                        i == 3 ? img = `<img src="cheesecake.png">` : ``;
+                        p_resultado.innerHTML += `${contador} - ${img} - R$ ${valores[i]}<br>`
+                        contador++;
+                        valor += valores[i];
+                    }
+                }
+            }
+
+            p_resultado.innerHTML += `<br>Com a quantidade de ${doces[0]} Macarons, ${doces[1]} Brigadeiros, ${doces[2]} Cupcakes e ${doces[3]} Cheesecakes, a venda totalizará R$${valor.toFixed(2)}`;
+        }
+    }
+</script>
