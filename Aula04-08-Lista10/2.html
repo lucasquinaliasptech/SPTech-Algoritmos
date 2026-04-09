@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira o nome do filme:</p>
+    <input type="text" id="ipt_filme">
+    <p>De...</p>
+    <input type="text" id="ipt_a">
+    <p>Até...</p>
+    <input type="text" id="ipt_b">
+    <br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="listar()">Listar Filmes</button>
+    <button onclick="filtrar()">Filtrar Filmes</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    let filmes = [];
+
+    function cadastrar() {
+        let filme = ipt_filme.value;
+
+        filmes.push(filme);
+
+        filmes.length == 1 ? p_resultado.innerHTML = `Você já assistiu ${filmes.length} filme` : p_resultado.innerHTML = `Você já assistiu ${filmes.length} filmes`;
+    }
+
+    function listar() {
+        p_resultado.innerHTML = ``;
+
+        for (let i = filmes.length - 1; i >= 0; i--) {
+            p_resultado.innerHTML += `${filmes[i]}<br>`;
+        }
+    }
+    
+    function filtrar() {
+        p_resultado.innerHTML = ``;
+        let a = Number(ipt_a.value);
+        let b = Number(ipt_b.value);
+        
+        if (a < b) {
+            for (let i = b - 1; i >= a - 1; i--) {
+                p_resultado.innerHTML += `${filmes[i]}<br>`;
+            }
+        } else {
+            p_resultado.innerHTML += `O primeiro valor deve ser menor do que o segundo!`;
+        }
+    }
+</script>

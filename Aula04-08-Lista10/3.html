@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira o nome do produto:</p>
+    <input type="text" id="ipt_produto">
+    <p>Insira o preço do produto:</p>
+    <input type="text" id="ipt_preco">
+    <br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar Estoque</button>
+    <br><br>
+    <select name="ipt_filtro" id="ipt_filtro">
+        <option value="acima">Preços acima de</option>
+        <option value="abaixo">Preços abaixo de</option>
+    </select>
+    <p>Insira o preço pelo qual deseja filtrar os produtos:</p>
+    <input type="text" id="ipt_valor">
+    <button onclick="filtrar()">Filtrar Produtos</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    let produtos = [];
+    let precos = [];
+
+    function cadastrar() {
+        let produto = ipt_produto.value;
+        let preco = Number(ipt_preco.value);
+
+        preco > 0 && produto.length > 3 ? (produtos.push(produto), precos.push(preco), p_resultado.innerHTML = `O produto ${produto} foi cadastrado com sucesso!`) : p_resultado.innerHTML = `O nome do produto deve ter mais de 3 caracteres e o preço não pode ser negativo!`;
+    }
+
+    function atualizar() {
+        p_resultado.innerHTML = `Você tem ${produtos.length} cadastrados no estoque:<br><br>`;
+        let valor = 0;
+
+        for (let i = 0; i < produtos.length; i++) {
+            p_resultado.innerHTML += `${i + 1}. ${produtos[i]} R$${precos[i]}<br>`;
+            valor += precos[i];
+        }
+
+        p_resultado.innerHTML += `Seu estoque vale R$${valor}`;
+    }
+    
+    function filtrar() {
+        p_resultado.innerHTML = ``;
+        let filtro = ipt_filtro.value;
+        let valor = Number(ipt_valor.value);
+
+        if (filtro == 'acima') {
+            for (let i = 0; i < produtos.length; i++) {
+                precos[i] > valor ? p_resultado.innerHTML += `${produtos[i]}<br>` : ``;
+            }
+        } else {
+            for (let i = 0; i < produtos.length; i++) {
+                precos[i] < valor ? p_resultado.innerHTML += `${produtos[i]}<br>` : ``;    
+            }
+        }
+    }
+</script>
