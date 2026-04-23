@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="matematica.js"></script>
+</head>
+
+<body>
+    <h1>Super calculadora SPTech</h1>
+    <p>Insira o primeiro número para a soma:</p>
+    <input type="text" id="ipt_soma_n1">
+    <p>Insira o segundo número para a soma:</p>
+    <input type="text" id="ipt_soma_n2">
+    <br><br>
+    <button onclick="exibirSoma()">Somar</button>
+    <p id="p_resultado_soma"></p>
+
+    <p>Insira o primeiro número para o cálculo da distância:</p>
+    <input type="text" id="ipt_distancia_n1">
+    <p>Insira o segundo número para o cálculo da distância:</p>
+    <input type="text" id="ipt_distancia_n2">
+    <p>Insira o terceiro número para o cálculo da distância:</p>
+    <input type="text" id="ipt_distancia_n3">
+    <p>Insira o quarto número para o cálculo da distância:</p>
+    <input type="text" id="ipt_distancia_n4">
+    <br><br>
+    <button onclick="exibirCalcularDistancia()">Calcular Distância</button>
+    <p id="p_resultado_distancia"></p>
+
+    <p>Insira a quantidade de segundos que serão convertidos:</p>
+    <input type="text" id="ipt_segundos">
+    <br><br>
+    <button onclick="exibirConverterParaHoraMinutoSegundo()">Converter</button>
+    <p id="p_resultado_segundos"></p>
+
+    <p>Insira o número que deseja verificar se é primo:</p>
+    <input type="text" id="ipt_primo">
+    <br><br>
+    <button onclick="exibirEPrimo()">Verificar</button>
+    <p id="p_resultado_primo"></p>
+
+    <p>Insira o número que deseja calcular o fatorial:</p>
+    <input type="text" id="ipt_fatorial">
+    <br><br>
+    <button onclick="exibirCalcularFatorial()">Calcular Fatorial</button>
+    <p id="p_resultado_fatorial"></p>
+
+    <p>Insira o conjunto de números que deseja calcular a média: (cadastre um por um)</p>
+    <input type="text" id="ipt_media">
+    <br><br>
+    <button onclick="cadastrarNumero()">Cadastrar Número</button>
+    <button onclick="exibirCalcularMedia()">Calcular Média</button>
+    <p id="p_resultado_media"></p>
+
+    <p>Insira o conjunto de números que deseja calcular a média e seus pesos: (cadastre um por um)</p>
+    <input type="text" id="ipt_media_ponderada">
+    <br><br>
+    <button onclick="cadastrarNumeroPonderada('num')">Cadastrar Número</button>
+    <button onclick="cadastrarNumeroPonderada('peso')">Cadastrar Peso</button>
+    <button onclick="exibirCalcularMediaPonderada()">Calcular Média Ponderada</button>
+    <p id="p_resultado_media_ponderada"></p>
+</body>
+
+</html>
+<script>
+    function exibirSoma() {
+        let n1 = Number(ipt_soma_n1.value);
+        let n2 = Number(ipt_soma_n2.value);
+
+        p_resultado_soma.innerHTML = `O resultado da soma entre os valores ${n1} e ${n2} é ${soma(n1, n2)}`;
+    }
+
+    function exibirCalcularDistancia() {
+        let n1 = Number(ipt_distancia_n1.value);
+        let n2 = Number(ipt_distancia_n2.value);
+        let n3 = Number(ipt_distancia_n3.value);
+        let n4 = Number(ipt_distancia_n4.value);
+
+        p_resultado_distancia.innerHTML = `O cálculo da distância entre os valores inseridos é ${calcularDistancia(n1, n2, n3, n4)}`;
+
+    }
+
+    function exibirConverterParaHoraMinutoSegundo() {
+        let n = Number(ipt_segundos.value);
+
+        p_resultado_segundos.innerHTML = `A quantidade de ${n} segundos convertidos para hora, minuto e segundos é: ${converterParaHoraMinutoSegundo(n)}`;
+    }
+
+    function exibirEPrimo() {
+        let n = Number(ipt_primo.value);
+
+        ePrimo(n) ? p_resultado_primo.innerHTML = `O número ${n} é primo!` : p_resultado_primo.innerHTML = `O número ${n} não é primo.`;
+    }
+
+    function exibirCalcularFatorial() {
+        let n = Number(ipt_fatorial.value);
+
+        p_resultado_fatorial.innerHTML = `O fatorial de ${n} é ${calcularFatorial(n)}`;
+    }
+
+    let numeros_media_aritmetica = [];
+
+    function cadastrarNumero() {
+        let num = Number(ipt_media.value);
+
+        numeros_media_aritmetica.push(num);
+        p_resultado_media.innerHTML = `Número ${num} cadastrado com sucesso!`;
+    }
+
+    function exibirCalcularMedia() {
+        p_resultado_media.innerHTML = `A média entre os valores ${numeros_media_aritmetica} é ${calcularMedia(numeros_media_aritmetica)}`;
+
+    }
+
+    let numeros_media_ponderada = [];
+    let pesos_media_ponderada = [];
+
+    function cadastrarNumeroPonderada(tipo) {
+        let num = Number(ipt_media_ponderada.value);
+
+        tipo == 'num' ? (numeros_media_ponderada.push(num), p_resultado_media_ponderada.innerHTML = `Número ${num} cadastrado com sucesso!`) : (pesos_media_ponderada.push(num), p_resultado_media_ponderada.innerHTML = `Peso ${num} cadastrado com sucesso!`);
+    }
+
+    function exibirCalcularMediaPonderada() {
+        numeros_media_ponderada.length == pesos_media_ponderada.length ? p_resultado_media_ponderada.innerHTML = `A média entre os valores ${numeros_media_ponderada}, com os pesos de ${pesos_media_ponderada} é ${calcularMediaPonderada(numeros_media_ponderada, pesos_media_ponderada)}` : p_resultado_media_ponderada.innerHTML = `Deve ser cadastrado um peso para cada número!`;
+    }
+</script>
