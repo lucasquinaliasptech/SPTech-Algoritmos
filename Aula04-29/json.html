@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let aluno = {
+        'nome': 'Lucas',
+        'idade': 20,
+        'notas': [10, 9],
+        'endereco': {
+            'rua': 'Rua X',
+            'numero': 67
+        }
+    };
+
+    console.log(aluno);
+    console.log(`Meu nome é ${aluno.nome}`);
+    console.log(`Minha idade é ${aluno['idade']}`);
+    console.log(`Minha primeira nota é: ${aluno.notas[0]}`);
+    console.log(`Minha rua é: ${aluno.endereco.rua}`);
+
+    let informacao = 'endereco';
+
+    console.log(`Acessando ${informacao}: ${aluno[informacao].numero}`);
+
+    aluno['altura'] = 1.85;
+
+    console.log(aluno);
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Nome</p>
+    <input type="text" id="ipt_nome">
+    <p>Idade</p>
+    <input type="text" id="ipt_idade">
+    <p>Nota</p>
+    <input type="text" id="ipt_nota"><br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <hr>
+    <button onclick="exibirReprovados()">Exibir reprovados</button>
+    <div id="div_reprovados"></div>
+</body>
+</html>
+<script>
+    let alunos = [];
+
+    function cadastrar () {
+        let nome = ipt_nome.value;
+        let idade = Number(ipt_idade.value);
+        let nota = Number(ipt_nota.value);
+
+        let aluno = {
+            'nome': nome,
+            'idade': idade,
+            'nota': nota
+        }
+
+        alunos.push(aluno);
+        console.log(alunos);
+    }
+
+    function exibirReprovados () {
+        div_reprovados.innerHTML = ``;
+
+        for (let i = 0; i < alunos.length; i++) {
+            alunos[i].nota < 6 ? div_reprovados.innerHTML += `${alunos[i].nome}<br>` : ``;
+        }
+    } 
+ </script>
