@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Nota:</p>
+    <input type="text" id="ipt_nota">
+    <p>Frequência (%):</p>
+    <input type="text" id="ipt_frequencia">
+    <br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    notas = [];
+    frequencias = [];
+
+    function cadastrar() {
+        nota = Number(ipt_nota.value);
+        notas.push(nota);
+        
+        frequencia = Number(ipt_frequencia.value);
+        frequencias.push(frequencia);
+
+        mediaNotas = calcularMedia(notas);
+        mediaFrequencias = calcularMedia(frequencias);
+
+        div_mensagem.innerHTML = ``;
+        div_mensagem.innerHTML += `A média das notas é: ${mediaNotas.toFixed(2)}<br>`;
+        div_mensagem.innerHTML += `A média das frequências é: ${mediaFrequencias.toFixed(2)}`;
+    }
+
+    function calcularMedia(lista) {
+        soma = 0;
+        for (i = 0; i < lista.length; i++) {
+            soma += lista[i];
+        }
+
+        media = soma / lista.length;
+        return media;
+    }
+
+    function pesquisar(lista, busca) {
+        for (i = 0; i < lista.length; i++) {
+            if (lista[i] == busca) {
+                console.log(`Encontrei!`);
+                return i;
+            }
+        }
+
+        console.log(`Não encontrei.`);
+        return -1;
+    }
+</script>
