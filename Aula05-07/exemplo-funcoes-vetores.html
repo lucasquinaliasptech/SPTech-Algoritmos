@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let numeros = [7, 42, 89, 10, 25, 99];
+    const n = 10;
+
+    // let exibir = (valor, indice) => {
+    //     console.log(indice, valor);
+    // }
+
+    // numeros.forEach(exibir)
+
+    numeros.forEach((value, index) => {value % 2 == 0 ? 
+        console.log(`O valor ${value} é par e está no índice ${index}!`) : 
+        console.log(`O valor ${value} é ímpar e está no índice ${index}!`)}
+    );
+
+    // Predicate -> função que recebe um valor e retorna verdadeiro ou falso
+    numeros.filter((valor) => {
+        return valor % 2 == 0;
+    }).forEach(valor => {
+        console.log(valor);
+    });
+
+    // Cria um vetor novo pós transformação
+    let parOuImpar = numeros.map((valor) => {
+        // if (valor % 2 == 0) {
+        //     return`Par`
+        // } else {
+        //     return `Ímpar`;
+        // }
+
+        return valor % 2 == 0 ? `Par` : `Ímpar`;
+    });
+
+    let somar = numeros.reduce((acumulador,atual) => {
+        return acumulador * atual;
+    });
+
+    console.log(somar);
+</script>
