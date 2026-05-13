@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="sortear()">Sortear</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    function sortear() {
+        let numero = Math.random().toFixed(4)
+
+        p_resultado.innerHTML = `${numero}<br>`;
+
+        numero > 0.5 ? p_resultado.innerHTML += `Eu arredondaria para 1`: p_resultado.innerHTML += `Eu arredondaria para 0`;
+    }
+</script>

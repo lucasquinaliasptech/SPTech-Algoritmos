@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #div_resposta {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    #h1_numero {
+        color: white;
+    }
+</style>
+<body>
+    <button onclick="jogar()">Jogar dado</button>
+    <div id="div_resposta"></div>
+</body>
+</html>
+<script>
+    function jogar () {
+        let numero = (Math.random() * (20 - 1) + 1).toFixed(0);
+        div_resposta.innerHTML = `<h1 id="h1_numero">${numero}</h1>`;
+    }
+</script>

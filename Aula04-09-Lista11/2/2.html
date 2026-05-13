@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="sortear()">Sortear time</button>
+    <div id="div_resposta"></div>
+</body>
+</html>
+<script>
+    function sortear() {
+       let numero = (Math.random() * (4 - 1) + 1).toFixed(0);
+
+       numero == 1 ? div_resposta.innerHTML = `<img src="1.png" width="150px">` : ``;
+       numero == 2 ? div_resposta.innerHTML = `<img src="2.png" width="150px">` : ``;
+       numero == 3 ? div_resposta.innerHTML = `<img src="3.png" width="150px">` : ``;
+       numero == 4 ? div_resposta.innerHTML = `<img src="4.png" width="150px">` : ``;
+    }
+    150
+</script>

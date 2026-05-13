@@ -82,10 +82,31 @@
 
         p_resultado_adicionar_musica.innerHTML = ``;
 
+        if (titulo == `` || banda == `` || duracao == `` || anoLancamento == ``) {
+            p_resultado_adicionar_musica.innerHTML = `Preencha todos os campos para adicionar a música.`;
+            return;
+        }
+
+        for (let i = 0; i < musicas.length; i++) {
+            if (musicas[i].titulo.toLowerCase().includes(titulo.toLowerCase())) {
+                p_resultado_adicionar_musica.innerHTML = `Já existe uma música com este título.`;
+                return
+            }
+        }
+
         let avaliacoes = textoAvaliacoes.split(",");
+
+        if (textoAvaliacoes == `` || textoIntegrantes == ``) {
+            p_resultado_adicionar_musica.innerHTML = `Informe ao menos uma avaliação e um integrante.`;
+            return;
+        }
 
         for (let i = 0; i < avaliacoes.length; i++) {
             avaliacoes[i] = Number(avaliacoes[i].trim())
+            if (avaliacoes[i] < 1 || avaliacoes[i] > 5) {
+                p_resultado_adicionar_musica.innerHTML = `Todas as avaliações devem ser números entre 1 e 5.`;
+                return;
+            }
         }
 
         let integrantes = textoIntegrantes.split(",");
@@ -103,6 +124,8 @@
             integrantes
         }
         )
+
+        p_resultado_adicionar_musica.innerHTML = `Música ${titulo} cadastrada com sucesso!`;
     }
 
     function listarMusicas() {
@@ -120,9 +143,8 @@
                 `;
             }
         } else {
-            p_resultado_listar_musicas.innerHTML = `A playlist está vazia!`;
+            p_resultado_listar_musicas.innerHTML = `Nenhuma música cadastrada.`;
         }
-
     }
 
     function removerMusica() {
@@ -130,12 +152,23 @@
 
         p_resultado_remover_musica.innerHTML = ``;
 
+        if (musica == ``) {
+            p_resultado_remover_musica.innerHTML = `Informe o título para remover.`;
+            return;
+        }
+
+        if (musicas.length == 0) {
+            p_resultado_remover_musica.innerHTML = `Nenhuma música cadastrada.`;
+            return;
+        }
+
         for (let i = 0; i < musicas.length; i++) {
-            musicas[i].titulo.toLowerCase().includes(musica) ?
-                (p_resultado_remover_musica.innerHTML = `Música "${musicas[i].titulo}" removida com sucesso!<br>`,
-                    musicas.splice(i, 1)
-                ) :
-                p_resultado_remover_musica.innerHTML = `Música "${musica}" não encontrada na playlist!`;
+            if (musicas[i].titulo.toLowerCase().includes(musica)) {
+                p_resultado_remover_musica.innerHTML = `Música "${musicas[i].titulo}" removida com sucesso!<br>`;
+                musicas.splice(i, 1);
+            } else {
+                p_resultado_remover_musica.innerHTML = `Música não encontrada para remoção.`;
+            }
         }
     }
 
@@ -144,6 +177,16 @@
         let novo_ano = Number(ipt_ano_atualizar_ano.value);
 
         p_resultado_atualizar_ano.innerHTML = ``;
+
+        if (musica == `` || novo_ano == ``) {
+            p_resultado_atualizar_ano.innerHTML = `Informe o título e o novo ano.`;
+            return;
+        }
+
+        if (musicas.length == 0) {
+            p_resultado_atualizar_ano.innerHTML = `Nenhuma música cadastrada.`;
+            return;
+        }
 
         for (let i = 0; i < musicas.length; i++) {
             musicas[i].titulo.toLowerCase().includes(musica) ?
@@ -157,8 +200,7 @@
                     <b>Avaliações:</b> ${musicas[i].avaliacoes} | 
                     <b>Integrantes:</b> ${musicas[i].integrantes}<br>`,
                     musicas[i].anoLancamento = novo_ano) :
-                p_resultado_atualizar_ano.innerHTML = `Música "${musica}" não encontrada na playlist!
-            `;
+                p_resultado_atualizar_ano.innerHTML = `Música não encontrada para atualização.`;
         }
     }
 
@@ -166,6 +208,16 @@
         let musica = ipt_titulo_media.value.toLowerCase();
 
         p_resultado_media.innerHTML = ``;
+
+        if (musica == ``) {
+            p_resultado_media.innerHTML = `Informe o título para calcular a média.`;
+            return;
+        }
+
+        if (musicas.length == 0) {
+            p_resultado_media.innerHTML = `Nenhuma música cadastrada.`;
+            return;
+        }
 
         let media = 0;
 
@@ -178,7 +230,7 @@
                 p_resultado_media.innerHTML = `A média de avalisações da música "${musicas[i].titulo}" é ${media.toFixed(2)}!<br>`;
                 break;
             } else {
-                p_resultado_media.innerHTML = `Música "${musica}" não encontrada na playlist!`;
+                p_resultado_media.innerHTML = `Música não encontrada para calcular média.`;
             }
         }
     }
@@ -188,14 +240,29 @@
 
         p_resultado_busca_integrante.innerHTML = ``;
 
+        if (integrante == ``) {
+            p_resultado_busca_integrante.innerHTML = `Informe o integrante para buscar a banda.`;
+            return;
+        }
+
+        if (musicas.length == 0) {
+            p_resultado_busca_integrante.innerHTML = `Nenhuma música cadastrada.`;
+            return;
+        }
+
         let achou = false;
 
         for (let i = 0; i < musicas.length; i++) {
             for (let j = 0; j < musicas[i].integrantes.length; j++) {
-                musicas[i].integrantes[j].includes(integrante) ? (p_resultado_busca_integrante.innerHTML += `A pessoa "${integrante}" faz parte da banda "${musicas[i].banda}"!<br>`, achou = true) : ``;
+                if (musicas[i].integrantes[j].includes(integrante)) {
+                    p_resultado_busca_integrante.innerHTML += `A pessoa "${integrante}" faz parte da banda "${musicas[i].banda}"!<br>`;
+                    achou = true;
+                }
             }
         }
 
-        !achou ? p_resultado_busca_integrante.innerHTML = `A pessoa "${integrante}" não faz parte de nenhuma banda da playlist!`: ``;
+        if (!achou) {
+            p_resultado_busca_integrante.innerHTML = `Integrante não encontrado nas bandas cadastradas.`;
+        }
     }
 </script>
