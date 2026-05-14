@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Contas</title>
+</head>
+<body>
+    <h1>Gestão de Contas</h1>
+
+    <hr>
+    <h2>Listar Contas</h2>
+    <button onclick="listar()">Listar</button>
+    
+    <hr>
+    <h2>Alterar Saldo</h2>
+    <input type="text" id="ipt_valor">
+    <button onclick="alterarSaldo(`depositar`)">Depositar</button>
+    <button onclick="alterarSaldo(`sacar`)">Sacar</button>
+
+    <p id="p_resultado_listar"></p>
+</body>
+</html>
+<script>
+    const conta = [
+        {
+            "titular": "Lucas Raphael",
+            "saldo": 67.67,
+            "banco": "Safra"
+        }
+    ]
+
+    function listar(resultado) {
+        p_resultado_listar.innerHTML = ``;
+
+        if (conta.length > 0) {
+            for (let i = 0; i < conta.length; i++) {
+                p_resultado_listar.innerHTML += `
+                    <b>Titular:</b> ${conta[i].titular} | 
+                    <b>Saldo:</b> ${conta[i].saldo.toFixed(2)} | 
+                    <b>Banco:</b> ${conta[i].banco}<br>
+                `;
+            }
+        } else {
+            p_resultado_listar.innerHTML = `Nenhuma conta cadastrada!`;
+        }
+    }
+
+    function alterarSaldo(operacao) {
+        let valor = Number(ipt_valor.value);
+
+        if (operacao == `depositar`) {
+            conta[0].saldo += valor;
+        } else {
+            conta[0].saldo -= valor;
+        }
+
+        listar();
+    }
+</script>

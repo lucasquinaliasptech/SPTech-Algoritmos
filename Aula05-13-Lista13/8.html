@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Cardápio</title>
+</head>
+
+<body>
+    <h1>Gestão de Cardápio</h1>
+
+    <hr>
+    <h2>Listar Cardápio</h2>
+    <button onclick="listar()">Listar</button>
+    <br>
+    <span id="p_resultado_entrada"></span>
+    <span id="p_resultado_principal"></span>
+    <span id="p_resultado_sobremesa"></span>
+</body>
+
+</html>
+<script>
+    const pratos = [
+        {
+            "nome": "Macarrão",
+            "tipo": "principal",
+            "preco": 35.50
+        },
+        {
+            "nome": "Salada",
+            "tipo": "entrada",
+            "preco": 15.90
+        },
+        {
+            "nome": "Brigadeiro",
+            "tipo": "sobremesa",
+            "preco": 15.60
+        },
+        {
+            "nome": "Carne de Sol",
+            "tipo": "principal",
+            "preco": 32.90
+        },
+        {
+            "nome": "Sorvete",
+            "tipo": "sobremesa",
+            "preco": 19.90
+        }
+    ]
+
+    function listar() {
+        p_resultado_entrada.innerHTML = ``;
+        p_resultado_principal.innerHTML = ``;
+        p_resultado_sobremesa.innerHTML = ``;
+
+        if (pratos.length > 0) {
+            for (let i = 0; i < pratos.length; i++) {
+                if (pratos[i].tipo == `entrada`) {
+                    p_resultado_entrada.innerHTML += `
+                        <b>Prato:</b> ${pratos[i].nome} | 
+                        <b>Tipo:</b> ${pratos[i].tipo} |
+                        <b>Preço:</b> ${pratos[i].preco.toFixed(2)}<br>
+                    `;
+                } else if (pratos[i].tipo == `principal`) {
+                    p_resultado_principal.innerHTML += `
+                        <b>Prato:</b> ${pratos[i].nome} | 
+                        <b>Tipo:</b> ${pratos[i].tipo} |
+                        <b>Preço:</b> ${pratos[i].preco.toFixed(2)}<br>
+                    `;
+                } else {
+                    p_resultado_sobremesa.innerHTML += `
+                        <b>Prato:</b> ${pratos[i].nome} | 
+                        <b>Tipo:</b> ${pratos[i].tipo} |
+                        <b>Preço:</b> ${pratos[i].preco.toFixed(2)}<br>
+                    `;
+                }
+            }
+        } else {
+            p_resultado_listar.innerHTML = `Nenhum prato cadastrado!`;
+        }
+    }
+</script>

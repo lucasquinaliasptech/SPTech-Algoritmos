@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Notas</title>
+</head>
+<body>
+    <h1>Gestão de Notas</h1>
+
+    <hr>
+    <h2>Analisar Notas</h2>
+    <button onclick="analisar()">Analisar</button>
+    <p id="p_resultado_analisar"></p>
+</body>
+</html>
+<script>
+    const notas = [
+        {
+            "nome": "Lucas",
+            "nota": 10
+        },
+        {
+            "nome": "Raphael",
+            "nota": 5
+        },
+        {
+            "nome": "Murilo",
+            "nota": 7
+        },
+        {
+            "nome": "Ricardo",
+            "nota": 8
+        },
+        {
+            "nome": "Kevin",
+            "nota": 4
+        }
+    ]
+
+    function analisar() {
+        let media = 0;
+        let indiceMaior = 0;
+        let indiceMenor = 0;
+
+        if (notas.length > 0) {
+            for (let i = 0; i < notas.length; i++) {
+                media += notas[i].nota;
+                if (notas[indiceMaior].nota < notas[i].nota) {
+                    indiceMaior = i;
+                }
+                
+                if (notas[indiceMenor].nota > notas[i].nota) {
+                    indiceMenor = i;
+                }
+            }
+
+            media = media / notas.length;
+
+            p_resultado_analisar.innerHTML = `
+                    <b>Média da turma:</b> ${media.toFixed(2)}<br>
+                    <b>Aluno com a maior nota:</b> ${notas[indiceMaior].nome}<br>
+                    <b>Aluno com a menor nota:</b> ${notas[indiceMenor].nome}<br>
+                `;
+        } else {
+            p_resultado_analisar.innerHTML = `Nenhuma nota cadastrada!`;
+        }
+    }
+</script>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Produtos</title>
+</head>
+<body>
+    <h1>Gestão de Produtos</h1>
+
+    <hr>
+    <h2>Filtrar Produtos</h2>
+    <input type="text" id="ipt_filtro">
+    <br><br>
+    <button onclick="filtrar()">Filtrar</button>
+    <p id="p_resultado_filtrar"></p>
+</body>
+</html>
+<script>
+    const produtos = [
+        {
+            "nome": "Carderno",
+            "categoria": "Papelaria",
+            "preco": 10
+        },
+        {
+            "nome": "Caneta",
+            "categoria": "Papelaria",
+            "preco": 2.90
+        },
+        {
+            "nome": "Mouse",
+            "categoria": "Eletrônico",
+            "preco": 25.50
+        },
+        {
+            "nome": "Monitor",
+            "categoria": "Eletrônico",
+            "preco": 399
+        },
+        {
+            "nome": "Mesa",
+            "categoria": "Móveis",
+            "preco": 670
+        },
+        {
+            "nome": "Prateleira",
+            "categoria": "Móveis",
+            "preco": 35.90
+        }
+    ]
+
+    function filtrar() {
+        p_resultado_filtrar.innerHTML = ``;
+        filtro = (ipt_filtro.value).toLowerCase();
+
+        if (filtro == ``) {
+            p_resultado_filtrar.innerHTML = `Preencha o campo para filtrar!`;
+            return;
+        }
+
+        if (produtos.length > 0) {
+            for (let i = 0; i < produtos.length; i++) {
+                if ((produtos[i].categoria).toLowerCase() == filtro) {
+                    p_resultado_filtrar.innerHTML += `
+                        <b>Produto:</b> ${produtos[i].nome} | 
+                        <b>Categoria:</b> ${produtos[i].categoria} | 
+                        <b>Preço:</b> ${produtos[i].preco}<br>
+                    `;
+                }
+            }
+        } else {
+            p_resultado_filtrar.innerHTML = `Nenhum contrato cadastrado!`;
+            return;
+        }
+    }
+</script>

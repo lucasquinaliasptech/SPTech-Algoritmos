@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Contratos</title>
+</head>
+<body>
+    <h1>Gestão de Contratos</h1>
+
+    <hr>
+    <h2>Listar Contratos</h2>
+    <button onclick="listar()">Listar</button>
+    <p id="p_resultado_listar"></p>
+</body>
+</html>
+<script>
+    const contratos = [
+        {
+            "nome": "Contrato de Locação",
+            "telefone": "(11) 98888-7777"
+        },
+        {
+            "nome": "Contrato de Venda",
+            "telefone": "(11) 98888-7777"
+        },
+        {
+            "nome": "Contrato de Prestação de Serviços",
+            "telefone": "(11) 98888-7777"
+        },
+        {
+            "nome": "Contrato de Aluguel",
+            "telefone": "(11) 98888-7777"
+        }
+    ]
+
+    function listar() {
+        p_resultado_listar.innerHTML = ``;
+
+        if (contratos.length > 0) {
+            for (let i = 0; i < contratos.length; i++) {
+                p_resultado_listar.innerHTML += `
+                    <b>Contratos:</b> ${contratos[i].nome} | 
+                    <b>Telefone:</b> ${contratos[i].telefone}<br>
+                `;
+            }
+        } else {
+            p_resultado_listar.innerHTML = `Nenhum contrato cadastrado!`;
+        }
+    }
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos</title>
+</head>
+<body>
+    <h1>Gerenciador de Alunos</h1>
+
+    <hr>
+    <h2>Listar Alunos</h2>
+    <button onclick="listar()">Listar</button>
+    <p id="p_resultado_listar"></p>
+</body>
+</html>
+<script>
+    const aluno = [
+        {
+            "nome": "Lucas Raphael",
+            "ra": 1234567,
+            "curso": "Ciência da Computação",
+            "semestre": 5
+        },
+        {
+            "nome": "Murilo Mendes",
+            "ra": 2345678,
+            "curso": "Ciência da Computação",
+            "semestre": 2
+        }
+    ]
+
+    function listar() {
+        p_resultado_listar.innerHTML = ``;
+
+        if (aluno.length > 0) {
+            for (let i = 0; i < aluno.length; i++) {
+                p_resultado_listar.innerHTML += `
+                    <b>Nome:</b> ${aluno[i].nome}<br>
+                    <b>RA:</b> ${aluno[i].ra}<br>
+                    <b>Curso:</b> ${aluno[i].curso}<br>
+                    <b>Semestre:</b> ${aluno[i].semestre}<br><br>
+                `;
+            }
+        } else {
+            p_resultado_listar.innerHTML = `Nenhum aluno cadastrado!`;
+        }
+    }
+</script>

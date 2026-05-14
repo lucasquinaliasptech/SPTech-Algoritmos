@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Clientes</title>
+</head>
+<body>
+    <h1>Gestão de Clientes</h1>
+
+    <hr>
+    <h2>Listar Clientes</h2>
+    <button onclick="listar()">Listar</button>
+    <p id="p_resultado_listar"></p>
+</body>
+</html>
+<script>
+    const cliente = [
+        {
+            "nome": "Lucas Raphael",
+            "idade": 20,
+            "endereco": {
+                "rua": "Haddock Lobo",
+                "numero": 595,
+                "cidade": "São Paulo"
+            }
+        },
+        {
+            "nome": "Murilo Mendes",
+            "idade": 18,
+            "endereco": {
+                "rua": "Pedro",
+                "numero": 67,
+                "cidade": "São Paulo"
+            }
+        }
+    ]
+
+    function listar() {
+        p_resultado_listar.innerHTML = ``;
+
+        if (cliente.length > 0) {
+            for (let i = 0; i < cliente.length; i++) {
+                p_resultado_listar.innerHTML += `
+                    <b>Cliente:</b> ${cliente[i].nome} | 
+                    <b>Idade:</b> ${cliente[i].idade} | 
+                    <b>Endereço:</b> Rua ${cliente[i].endereco.rua}, ${cliente[i].endereco.numero}, ${cliente[i].endereco.cidade}<br>
+                `;
+            }
+        } else {
+            p_resultado_listar.innerHTML = `Nenhum cliente cadastrado!`;
+        }
+    }
+</script>

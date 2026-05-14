@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+</head>
+<body>
+    <h1>Carrinho de Produtos</h1>
+
+    <hr>
+    <h2>Listar Produtos no Carrinho</h2>
+    <button onclick="listar()">Listar</button>
+    <p id="p_resultado_listar"></p>
+</body>
+</html>
+<script>
+    const produto = [
+        {
+            "nome": "Cupcake",
+            "preco": 13.99,
+            "quantidade": 5
+        },
+        {
+            "nome": "Paçoca",
+            "preco": 4.99,
+            "quantidade": 12
+        }
+    ]
+
+    function listar() {
+        p_resultado_listar.innerHTML = ``;
+
+        if (produto.length > 0) {
+            for (let i = 0; i < produto.length; i++) {
+                p_resultado_listar.innerHTML += `
+                    <b>Produto:</b> ${produto[i].nome} | 
+                    <b>Preço:</b> ${produto[i].preco} | 
+                    <b>Quantidade:</b> ${produto[i].quantidade} | 
+                    <b>Total:</b> ${produto[i].preco * produto[i].quantidade}<br>
+                `;
+            }
+        } else {
+            p_resultado_listar.innerHTML = `Nenhum produto cadastrado!`;
+        }
+    }
+</script>
