@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatinhos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        #gatinhos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .gato {
+            margin: 40px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .gato img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<header>
+    <h1>Bem-vindo(a) à Gatinhos API!</h1>
+</header>
+
+<body>
+    <p>Digite abaixo a quantidade de imagens de gatinhos que você deseja gerar:</p>
+    <input type="text" id="qtd_gatinhos">
+    <button onclick="gerar()">Gerar imagens</button>
+    <div id="gatinhos"></div>
+</body>
+
+</html>
+<script>
+    function gerar() {
+        let qtd = Number(qtd_gatinhos.value);
+        let div = document.getElementById("gatinhos");
+
+        if (qtd == "") {
+            div.innerHTML = "<p>Preencha o campo de quantidade!</p>"
+        } else if (qtd < 1) {
+            div.innerHTML = "<p>Preencha o campo de quantidade com um valor válido!</p>"
+        } else {
+            div.innerHTML = "";
+
+            for (let i = 0; i < qtd; i++) {
+                fetch("https://api.thecatapi.com/v1/images/search", {
+                    method: "GET"
+                }).then(function (resposta) {
+                    console.log("Conexão realizada com sucesso com a API de gatinhos!");
+
+                    if (resposta.ok) {
+                        console.log(resposta);
+
+                        resposta.json().then(json => {
+                            console.log(json);
+                            console.log(JSON.stringify(json));
+
+                            div.innerHTML += `
+                                <div class="gato">
+                                    <img src=${json[0].url} alt="Imagem de um gatinho">
+                                    <p>Foto de gatinho ${i + 1}</p>
+                                </div>
+                            `
+                        });
+
+                    } else {
+                        console.log("Houve um erro ao obter dados da API de gatinhos!");
+
+                        resposta.text().then(texto => {
+                            console.error(texto);
+                        });
+                    }
+
+                }).catch(function (erro) {
+                    console.log(erro);
+                })
+            }
+        }
+    }
+</script>
