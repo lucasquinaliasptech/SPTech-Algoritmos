@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira o dia da semana em inglês:</p>
+    <input type="text" id="ipt_dia">
+    <br><br>
+    <button onclick="traduzir()">Traduzir</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    const dias = {
+        "monday": "Segunda-feira",
+        "tuesday": "Terça-feira",
+        "wednesday": "Quarta-feira",
+        "thursday": "Quinta-feira",
+        "friday": "Sexta-feira",
+        "saturday": "Sábado",
+        "sunday": "Domingo"
+    };
+
+    function traduzir() {
+        let dia = (ipt_dia.value).toLowerCase();
+
+        if (!(dia in dias)) {
+            p_resultado.innerHTML = `Dia não encontrado!`;
+        }
+
+        p_resultado.innerHTML = `${dias[dia]}`;
+    }
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Insira o valor da compra realizada:</p>    
+    <input type="text" id="ipt_valor">
+    <select name="ipt_cliente" id="ipt_cliente">
+        <option value="estudante">Estudante</option>
+        <option value="idoso">Idoso</option>
+        <option value="professor">Professor</option>
+        <option value="comum">Comum</option>
+    </select>
+    <br><br>
+    <button onclick="calcular()">Calcular</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    const descontos = {
+        "estudante": 0.20,
+        "idoso": 0.15,
+        "professor": 0.10,
+        "comum": 0.00
+    };
+
+    function calcular() {
+        let valor = Number(ipt_valor.value);
+        let cliente = ipt_cliente.value;
+
+        let desconto = valor * (descontos[cliente]);
+
+        let valorFinal = valor - desconto;
+
+        p_resultado.innerHTML = `Porcentagem de desconto: ${descontos[cliente] * 100}% | Desconto aplicado: R$ ${desconto} | Valor final: R$ ${valorFinal}`;
+    }
+</script>

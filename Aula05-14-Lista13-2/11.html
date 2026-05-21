@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ipt_ra">
+    <br><br>
+    <button onclick="consultar()">Consultar</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    const turma = {
+        "1001": { nome: "Carlos", nota: 8.5 },
+        "1002": { nome: "Beatriz", nota: 9.0 }
+    };
+
+    function consultar() {
+        ra = ipt_ra.value;
+
+        if (!(ra in turma)) {
+            p_resultado.innerHTML = `Aluno não encontrado`;
+        }
+
+        p_resultado.innerHTML = `Aluno: ${turma[ra].nome} | Nota: ${turma[ra].nota}`;
+    }
+</script>

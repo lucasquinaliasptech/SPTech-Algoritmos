@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Adicionar novo contato</h1>
+    <p>Telefone:</p>
+    <input type="text" id="ipt_telefone">
+    <p>Nome:</p>
+    <input type="text" id="ipt_nome">
+    <p>E-mail:</p>
+    <input type="text" id="ipt_email">
+    <br><br>
+    <button onclick="adicionar()">Adicionar</button>
+    <p id="p_resultado_adicionar"></p>
+    <hr>
+    <h1>Buscar contato</h1>
+    <p>Telefone</p>
+    <input type="text" id="ipt_buscar_contato">
+    <br><br>
+    <button onclick="buscar()">Buscar</button>
+    <p id="p_resultado_buscar"></p>
+    <hr>
+    <h1>Remover contato</h1>
+    <p>Telefone:</p>
+    <input type="text" id="ipt_remover_contato">
+    <br><br>
+    <button onclick="remover()">Remover</button>
+    <p id="p_resultado_remover"></p>
+    <hr>
+    <h1>Listar contatos</h1>
+    <button onclick="listar()">Buscar</button>
+    <p id="p_resultado_listar"></p>
+</body>
+
+</html>
+<script>
+    let contatos = {
+        "11988887777": { nome: "Murilo", email: "murilo@email.com" },
+        "11900009999": { nome: "Marcos", email: "marcos@email.com" }
+    };
+
+    function adicionar() {
+        let telefone = ipt_telefone.value;
+        let nome = ipt_nome.value;
+        let email = ipt_email.value;
+
+        
+        if (telefone in contatos) {
+            p_resultado_adicionar.innerHTML = `Telefone já cadastrado!`;
+        } else {
+            contatos[telefone] = { nome: nome, email: email };
+            p_resultado_adicionar.innerHTML = `Contato ${nome} cadastrado com sucesso!<br>
+                Dados:<br>
+                Telefone: ${telefone}<br>
+                E-mail: ${email}
+            `;
+        }
+
+    }
+
+    function buscar() {
+        let telefone = ipt_buscar_contato.value;
+
+        if (contatos[telefone]) {
+            p_resultado_buscar.innerHTML = `
+                Dados do telefone ${telefone}:<br>
+                Nome: ${contatos[telefone].nome}<br>
+                E-mail: ${contatos[telefone].email}
+            `;
+        } else {
+            p_resultado_buscar.innerHTML = `Nenhum contato com o número ${telefone} foi encontrado!`;
+        }
+    }
+
+    function remover() {
+        let telefone = ipt_remover_contato.value;
+
+        if (contatos[telefone]) {
+            delete contatos[telefone];
+            p_resultado_remover.innerHTML = `Telefone ${telefone} removido com sucesso!`;
+        } else {
+            p_resultado_remover.innerHTML = `Nenhum contato com o número ${telefone} foi encontrado!`;
+        }
+    }
+
+    function listar() {
+        p_resultado_listar.innerHTML = `Contatos cadastrados:<br>`;
+
+        let chaves = Object.keys(contatos);
+
+        if (chaves.length > 0) {
+            for (let i = 0; i < chaves.length; i++) {
+                p_resultado_listar.innerHTML += `
+                    Telefone: ${chaves[i]} | Nome: ${contatos[chaves[i]].nome} | E-mail: ${contatos[chaves[i]].email}<br>
+                `;
+            }
+        } else {
+            p_resultado_listar.innerHTML = `Nenhum contato cadastrado!`;
+        }
+    }
+</script>

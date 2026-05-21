@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pedidos</title>
+</head>
+<body>
+    <h1>Sistema de Pedidos</h1>
+    <p>Insira o código do produto</p>
+    <input type="text" id="ipt_cod">
+    <br><br>
+    <button onclick="pedir()">Adicionar</button>
+    <br><br>
+    <button onclick="fecharPedido()">Fechar Pedido</button>
+    <p id="p_resultado"></p>
+</body>
+</html>
+<script>
+    let pedido = [];
+
+    const cardapio = {
+        "HAM": { nome: "Hambúrguer Clássico", preco: 25.90 },
+        "ACA": { nome: "Açaí 500ml", preco: 18.00 },
+        "SAN": { nome: "Sanduíche", preco: 22.90},
+        "SOR": { nome: "Sorvete", preco: 15.99},
+        "SUC": { nome: "Suco", preco: 7.80}
+    };
+
+    function pedir() {
+        let cod = ipt_cod.value;
+
+        if (cod in cardapio) {
+            pedido.push(cardapio[cod].preco);
+    
+            p_resultado.innerHTML = `Produto: ${cardapio[cod].nome} | Preço: R$${(cardapio[cod].preco).toFixed(2)}<br>`;
+        } else {
+            p_resultado.innerHTML = `Produto inválido!<br>`;
+        }
+    }
+
+    function fecharPedido() {        
+        let total = 0;
+
+        if (pedido.length > 0) {
+            for (let i = 0; i < pedido.length; i++) {
+                total += pedido[i];
+            }
+            p_resultado.innerHTML = `Valor total a pagar: ${total}`;
+        } else {
+            p_resultado.innerHTML = `A lista de pedidos está vazia!`;
+        }
+
+        pedido = [];
+    }
+</script>
